@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rmemberns">
+
+	<select id="loginChk" parameterType="string" resultType="string">
+		select m_pass from rmember where m_id=#{m_id} and m_del !='y'
+	</select>
+	<select id="login" parameterType="string"  resultType="string">
+		select m_id from rmember where m_id=#{m_id} and m_del !='y'
+	</select>
+	
+	<select id="IdChk" parameterType="string"  resultType="string">
+		select m_id from rmember where m_id=#{m_id} and m_del !='y'
+	</select>
+	
+	<insert id="insert" parameterType="rmember">
+		insert into rmember values (#{m_id},#{m_pass},#{m_name},
+		#{m_addr},#{m_mail},#{m_tel}, sysdate, 'n')
+	</insert>
+	
+	<select id="selectOMemberList" parameterType="string" resultType="rmember" >
+		select m_name, m_tel, m_addr from rmember where m_id= #{m_id} 
+	</select>
+
+<!-- select password from member2 where id=? and del!='y' -->
+
+<!-- 	<select id="select" parameterType="string" resultType="menber">
+		select * from menber where id=#{id} 
+	</select>
+	
+	<update id="update" parameterType="menber">
+		update menber set m_pass=#{m_pass},m_name=#{m_name},m_ssn=#{m_ssn},
+		m_post=#{m_post},m_addr=#{m_addr},m_mail=#{m_mail},m_tel=#{m_tel} where id=#{id}
+	</update>
+	<update id="delete" parameterType="string">
+		update menber set del='y' where id=#{id}
+	</update> -->
+</mapper>
